@@ -268,10 +268,11 @@ namespace PNGlutinator
         /// </summary>
         private void setupTransTexture()
         {
+            /*
             Image transTile = Image.FromStream(
                 System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("PNGlutinator.libs.trans.png")
-            );
-            transTexture = new TextureBrush(transTile);
+            );*/
+            transTexture = new TextureBrush(PNGlutinator.Properties.Resources.trans);
         }
 
         /// <summary>

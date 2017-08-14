@@ -54,6 +54,7 @@ namespace PNGlutinator
         {
             InitializeComponent();
 
+
             batch.FileProcessSuccess += new PNGlutinator.BatchOperations.FileProcessSuccessEventHandler(batch_FileProcessSuccess);
             batch.FileProcessFail += new PNGlutinator.BatchOperations.FileProcessFailEventHandler(batch_FileProcessFail);
             batch.Complete += new EventHandler(batch_Complete);
@@ -71,12 +72,12 @@ namespace PNGlutinator
         {
             string[] fileList = getFileList();
             TotalFiles = fileList.Length;
-            updateStatusText((TotalFiles == 0? "No" : TotalFiles.ToString()) + " files selected");
+            updateStatusText((TotalFiles == 0 ? "No" : TotalFiles.ToString()) + " files selected");
         }
 
         private void updateStatusText(string text)
         {
-             statusText.Text = text;
+            statusText.Text = text;
         }
 
         private void SetRunning()
@@ -105,7 +106,7 @@ namespace PNGlutinator
         private void updateProgress(object sender, EventArgs e)
         {
             PercentComplete = FilesProcessed * 100 / TotalFiles;
-            
+
             try
             {
                 progressBar.Value = PercentComplete;
@@ -114,7 +115,7 @@ namespace PNGlutinator
             {
                 Debug.Print("Can't update progress bar...");
             }
-             
+
 
             try
             {
@@ -148,7 +149,7 @@ namespace PNGlutinator
         private void addFileToBatch(string path, string display)
         {
             FileInfo fileInfo = new FileInfo(path);
-            // we don't accept directories (yet)
+            //todo: we don't accept directories (yet)
             if (fileInfo.Attributes == FileAttributes.Directory)
             {
                 return;
@@ -162,8 +163,10 @@ namespace PNGlutinator
                     return;
                 }
             }
+
             long fileSize = new FileInfo(path).Length;
-            fileBatchDataGridView.Rows.Add(display, path, formatFileSize(fileSize), "", "Uncompressed");
+            // show only filename
+            fileBatchDataGridView.Rows.Add(Path.GetFileName(display), path, formatFileSize(fileSize), "", "", "Uncompressed");
         }
         /// <summary>
         /// Adds a file to fileBatchDataGridView.
@@ -203,6 +206,24 @@ namespace PNGlutinator
             return Math.Round(fileSize / 1024.0, 2) + "k";
         }
 
+        private string formatCompressPercent(long OriginalFileSize, long CompressFileSize)
+        {
+            if (CompressFileSize == 0) return "0%";
+            else
+            {
+
+                float r = (CompressFileSize / OriginalFileSize) * 100;
+                return "-" + Math.Round(r, 2) + "%";
+            }
+        }
+
+
+        /// <summary>
+        /// Dont work if the app have more privilegies (ex. run as admin or in VS) than ex. explorer
+        /// https://stackoverflow.com/questions/8776719/c-sharp-winforms-dragenter-never-fires
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainView_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
@@ -287,7 +308,7 @@ namespace PNGlutinator
         {
             bool canPaste = canPasteFiles();
             pasteMenuItem.Enabled = canPaste;
-            pasteToolStripMenuItem.Enabled = canPaste;
+            //pasteToolStripMenuItem.Enabled = canPaste;
         }
 
         private void outputDirectoryBrowseButton_Click(object sender, EventArgs e)
@@ -336,7 +357,7 @@ namespace PNGlutinator
             {
                 compressionSettings.Indexed = colourSettings.CompressionSettings;
             }
-            
+
         }
 
         private void overwriteCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -426,7 +447,10 @@ namespace PNGlutinator
                 // We know we're dealing with a new file if the optimised size col isn't empty
                 if ((string)row.Cells["OptimisedSizeColumn"].Value != String.Empty)
                 {
-                    row.Cells["FileColumn"].Value = row.Cells["RealFileColumn"].Value;
+                    // only show name
+                    // row.Cells["FileColumn"].Value = row.Cells["RealFileColumn"].Value;
+
+                    row.Cells["FileColumn"].Value = Path.GetFileName(row.Cells["RealFileColumn"].Value.ToString());
                     row.Cells["OriginalSizeColumn"].Value = row.Cells["OptimisedSizeColumn"].Value;
                 }
             }
@@ -444,12 +468,19 @@ namespace PNGlutinator
 
             DataGridViewRow row = fileBatchDataGridView.Rows[e.FilePathIndex];
 
+            long dOrig = 0, dOpti = 0;
+
+
             if (e.Compressor != null)
             {
+                dOrig = (e.Compressor.OriginalFile.Length);
+                dOpti = e.Compressor.CompressedFile.Length;
+
                 // update optimised size column
                 row.Cells["OptimisedSizeColumn"].Value = formatFileSize(e.Compressor.CompressedFile.Length);
                 // update actual file row to point to the new file, so further compressions act on the new file
                 row.Cells["RealFileColumn"].Value = e.NewFilePath;
+                
                 // update status
                 string compressorUsed = e.Compressor.GetType().Name;
                 row.Cells["StatusColumn"].Value = String.Format("Complete: {0} used", compressorUsed);
@@ -465,6 +496,10 @@ namespace PNGlutinator
                 }
                 row.Cells["StatusColumn"].Value = "Complete: Original file copied";
             }
+
+            row.Cells["Percent"].Value = formatCompressPercent(dOrig, dOpti);
+
+
 
         }
 
@@ -509,6 +544,28 @@ namespace PNGlutinator
             batch.Cancel();
             Running = false;
         }
+
+
+        private void toolStripButtonAbout_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/JavierCanon/Social-Office-PNGlutinaitor");
+        }
+
+        private void toolStripButtonHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/JavierCanon/Social-Office-PNGlutinaitor/wiki");
+        }
+
+        private void toolStripButtonCustomize_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", "http://www.xn--javiercaon-09a.com/p/contacto.html");
+        }
+
+        private void toolStripButtonForum_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", "https://www.facebook.com/groups/SocialOffice");
+        }
+
 
     }
 }
