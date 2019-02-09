@@ -8,6 +8,7 @@ Excellent question! When you process a PNG (Portable Network Graphics) file, sim
 In the average image, the file size is reduced by 50% - 70%. 
 You can’t spot the difference either! Use the optimized image to save bandwidth and loading time and your website visitors will thank you, and you BOOST YOUR SEO (search engine rankings).
 
+![pnglutinaitor](docs/img/pnglutinaitor-screenshoot-2.png)
 
 ## Requeriments? ##
 
@@ -36,9 +37,8 @@ Fast mode for processing large numbers of images.
 
 Example:
 * Original PNG: 75,628 bytes
-[![Batch Image Processor](https://pngquant.org/Ducati_side_shadow.png)]	
 * tiny png converted pngquant: 19,996 bytes (73% smaller)
-[![Batch Image Processor](https://pngquant.org/Ducati_side_shadow-fs8.png)]
+![pnglutinaitor](docs/img/pnglutinaitor-2017-08-16-13-10-08.png)
 
 
 ## Pngcrush ##
@@ -72,3 +72,5 @@ Things I would like to add:
 
 ## Bugs ##
 Please submit bug reports or feature requests on GitHub.
+
+Made with ❤️ by [Javier Cañon](https://www.javiercanon.com).
