@@ -11,8 +11,8 @@ You can’t spot the difference either! Use the optimized image to save bandwidt
 
 ## Requeriments? ##
 
-Windows 7, 8.1, 10.
-.Net Framework 4.6.2.
+Windows 10.
+.Net Framework 4.7.2.
 
 ## Community ##
 

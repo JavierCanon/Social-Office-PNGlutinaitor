@@ -52,13 +52,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusText = new System.Windows.Forms.ToolStripStatusLabel();
-            this.fileBatchDataGridView = new System.Windows.Forms.DataGridView();
-            this.FileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RealFileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OriginalSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptimisedSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Percent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fileListContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFilesDialog = new System.Windows.Forms.OpenFileDialog();
@@ -68,15 +61,24 @@
             this.goButton = new System.Windows.Forms.Button();
             this.removeItemButton = new System.Windows.Forms.Button();
             this.addFilesButton = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.fileBatchDataGridView = new System.Windows.Forms.DataGridView();
+            this.FileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RealFileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OriginalSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptimisedSizeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Percent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileBatchDataGridView)).BeginInit();
             this.fileListContextMenu.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileBatchDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -220,77 +222,6 @@
             this.statusText.Name = "statusText";
             resources.ApplyResources(this.statusText, "statusText");
             // 
-            // fileBatchDataGridView
-            // 
-            this.fileBatchDataGridView.AllowDrop = true;
-            this.fileBatchDataGridView.AllowUserToAddRows = false;
-            this.fileBatchDataGridView.AllowUserToOrderColumns = true;
-            this.fileBatchDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.fileBatchDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.fileBatchDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.fileBatchDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            this.fileBatchDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.fileBatchDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fileBatchDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.FileColumn,
-            this.RealFileColumn,
-            this.OriginalSizeColumn,
-            this.OptimisedSizeColumn,
-            this.Percent,
-            this.StatusColumn});
-            this.fileBatchDataGridView.GridColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.fileBatchDataGridView, "fileBatchDataGridView");
-            this.fileBatchDataGridView.Name = "fileBatchDataGridView";
-            this.fileBatchDataGridView.ReadOnly = true;
-            this.fileBatchDataGridView.RowHeadersVisible = false;
-            this.fileBatchDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.fileBatchDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.fileBatchDataGridView_RowsRemoved);
-            this.fileBatchDataGridView.SelectionChanged += new System.EventHandler(this.fileBatchDataGridView_SelectionChanged);
-            this.fileBatchDataGridView.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainView_DragDrop);
-            this.fileBatchDataGridView.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainView_DragEnter);
-            // 
-            // FileColumn
-            // 
-            this.FileColumn.FillWeight = 237.3096F;
-            resources.ApplyResources(this.FileColumn, "FileColumn");
-            this.FileColumn.Name = "FileColumn";
-            this.FileColumn.ReadOnly = true;
-            // 
-            // RealFileColumn
-            // 
-            resources.ApplyResources(this.RealFileColumn, "RealFileColumn");
-            this.RealFileColumn.Name = "RealFileColumn";
-            this.RealFileColumn.ReadOnly = true;
-            // 
-            // OriginalSizeColumn
-            // 
-            this.OriginalSizeColumn.FillWeight = 59.32741F;
-            resources.ApplyResources(this.OriginalSizeColumn, "OriginalSizeColumn");
-            this.OriginalSizeColumn.Name = "OriginalSizeColumn";
-            this.OriginalSizeColumn.ReadOnly = true;
-            // 
-            // OptimisedSizeColumn
-            // 
-            this.OptimisedSizeColumn.FillWeight = 59.32741F;
-            resources.ApplyResources(this.OptimisedSizeColumn, "OptimisedSizeColumn");
-            this.OptimisedSizeColumn.Name = "OptimisedSizeColumn";
-            this.OptimisedSizeColumn.ReadOnly = true;
-            // 
-            // Percent
-            // 
-            this.Percent.FillWeight = 25.38071F;
-            resources.ApplyResources(this.Percent, "Percent");
-            this.Percent.Name = "Percent";
-            this.Percent.ReadOnly = true;
-            // 
-            // StatusColumn
-            // 
-            this.StatusColumn.FillWeight = 118.6548F;
-            resources.ApplyResources(this.StatusColumn, "StatusColumn");
-            this.StatusColumn.Name = "StatusColumn";
-            this.StatusColumn.ReadOnly = true;
-            // 
             // fileListContextMenu
             // 
             this.fileListContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -354,16 +285,89 @@
             this.addFilesButton.UseVisualStyleBackColor = true;
             this.addFilesButton.Click += new System.EventHandler(this.addFilesButton_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.fileBatchDataGridView);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // fileBatchDataGridView
+            // 
+            this.fileBatchDataGridView.AllowUserToAddRows = false;
+            this.fileBatchDataGridView.AllowUserToOrderColumns = true;
+            this.fileBatchDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.fileBatchDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.fileBatchDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.fileBatchDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            this.fileBatchDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.fileBatchDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.fileBatchDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FileColumn,
+            this.RealFileColumn,
+            this.OriginalSizeColumn,
+            this.OptimisedSizeColumn,
+            this.Percent,
+            this.StatusColumn});
+            this.fileBatchDataGridView.GridColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.fileBatchDataGridView, "fileBatchDataGridView");
+            this.fileBatchDataGridView.Name = "fileBatchDataGridView";
+            this.fileBatchDataGridView.ReadOnly = true;
+            this.fileBatchDataGridView.RowHeadersVisible = false;
+            this.fileBatchDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            // 
+            // FileColumn
+            // 
+            this.FileColumn.FillWeight = 237.3096F;
+            resources.ApplyResources(this.FileColumn, "FileColumn");
+            this.FileColumn.Name = "FileColumn";
+            this.FileColumn.ReadOnly = true;
+            // 
+            // RealFileColumn
+            // 
+            resources.ApplyResources(this.RealFileColumn, "RealFileColumn");
+            this.RealFileColumn.Name = "RealFileColumn";
+            this.RealFileColumn.ReadOnly = true;
+            // 
+            // OriginalSizeColumn
+            // 
+            this.OriginalSizeColumn.FillWeight = 59.32741F;
+            resources.ApplyResources(this.OriginalSizeColumn, "OriginalSizeColumn");
+            this.OriginalSizeColumn.Name = "OriginalSizeColumn";
+            this.OriginalSizeColumn.ReadOnly = true;
+            // 
+            // OptimisedSizeColumn
+            // 
+            this.OptimisedSizeColumn.FillWeight = 59.32741F;
+            resources.ApplyResources(this.OptimisedSizeColumn, "OptimisedSizeColumn");
+            this.OptimisedSizeColumn.Name = "OptimisedSizeColumn";
+            this.OptimisedSizeColumn.ReadOnly = true;
+            // 
+            // Percent
+            // 
+            this.Percent.FillWeight = 25.38071F;
+            resources.ApplyResources(this.Percent, "Percent");
+            this.Percent.Name = "Percent";
+            this.Percent.ReadOnly = true;
+            // 
+            // StatusColumn
+            // 
+            this.StatusColumn.FillWeight = 118.6548F;
+            resources.ApplyResources(this.StatusColumn, "StatusColumn");
+            this.StatusColumn.Name = "StatusColumn";
+            this.StatusColumn.ReadOnly = true;
+            // 
             // MainView
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.fileBatchDataGridView);
             this.Controls.Add(this.statusStrip1);
             this.Name = "MainView";
             this.Activated += new System.EventHandler(this.MainView_Activated);
@@ -382,10 +386,11 @@
             this.groupBox2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileBatchDataGridView)).EndInit();
             this.fileListContextMenu.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fileBatchDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,7 +414,6 @@
         private System.Windows.Forms.FolderBrowserDialog outputFolderBrowserDialog;
         private System.Windows.Forms.ToolStripProgressBar progressBar;
         public System.Windows.Forms.ToolStripStatusLabel statusText;
-        public System.Windows.Forms.DataGridView fileBatchDataGridView;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button goButton;
@@ -421,6 +425,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
         private System.Windows.Forms.ToolStripButton toolStripButtonCustomize;
         private System.Windows.Forms.ToolStripButton toolStripButtonForum;
+        private System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.DataGridView fileBatchDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn RealFileColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OriginalSizeColumn;

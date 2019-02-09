@@ -1,6 +1,4 @@
-﻿extensions: designer.cs generated.cs
-extensions: .cs .cpp .h
-// Copyright (c) 2017 Javier Cañon (www.javiercanon.com) (www.javiercañon.com)
+﻿// Copyright (c) 2017 Javier Cañon (www.javiercanon.com) (www.javiercañon.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -19,13 +17,39 @@ extensions: .cs .cpp .h
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
-extensions: .aspx .ascx
-<%-- 
-Copyright (c) 2017 Javier Cañon (www.javiercanon.com) 
---%>
-extensions: .vb
-'Sample license text.
-extensions:  .xml .config .xsd
-<!--
-Copyright (c) 2017 Javier Cañon (www.javiercanon.com) 
--->
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace PNGlutinator
+{
+
+    static class Program
+    {
+        private static MainView mainView;
+
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+
+#if DEBUG
+            System.Threading.Thread.CurrentThread.CurrentUICulture =
+                System.Globalization.CultureInfo.GetCultureInfo("es");
+#endif
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            mainView = new MainView();
+            Application.Run(mainView);
+        }
+
+    }
+
+
+}

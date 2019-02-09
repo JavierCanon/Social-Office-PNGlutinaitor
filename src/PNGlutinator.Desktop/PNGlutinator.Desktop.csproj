@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PNGlutinator</RootNamespace>
     <AssemblyName>PNGlutinator.Desktop</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
     </StartupObject>
@@ -20,6 +20,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -32,7 +33,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.1</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -68,7 +68,7 @@
     <ApplicationIcon>png-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -94,26 +94,26 @@
     <Compile Include="BatchOperations\BatchFileCompressor.cs" />
     <Compile Include="BatchOperations\FileProcessFailEventArgs.cs" />
     <Compile Include="BatchOperations\FileProcessSuccessEventArgs.cs" />
-    <Compile Include="ColourSettings.cs">
+    <Compile Include="Views\ColourSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ColourSettings.Designer.cs">
+    <Compile Include="Views\ColourSettings.Designer.cs">
       <DependentUpon>ColourSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="CompressionSettings.cs" />
+    <Compile Include="Presenters\CompressionSettings.cs" />
     <Compile Include="CompressionTypeSettings\Indexed.cs" />
     <Compile Include="Compressor\PNGCompressor.cs" />
-    <Compile Include="MainView.cs">
+    <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainView.Designer.cs">
+    <Compile Include="Views\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="Compressor\PNGQuant.cs" />
-    <Compile Include="PNGQuantPreviewControl.cs">
+    <Compile Include="Views\Controls\PNGQuantPreviewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PNGQuantPreviewControl.Designer.cs">
+    <Compile Include="Views\Controls\PNGQuantPreviewControl.Designer.cs">
       <DependentUpon>PNGQuantPreviewControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -128,10 +128,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.es.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MainView.es.resx">
+    <EmbeddedResource Include="Views\MainView.es.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainView.resx">
+    <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.es.resx">
@@ -146,10 +146,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ColourSettings.resx">
+    <EmbeddedResource Include="Views\ColourSettings.resx">
       <DependentUpon>ColourSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PNGQuantPreviewControl.resx">
+    <EmbeddedResource Include="Views\Controls\PNGQuantPreviewControl.resx">
       <DependentUpon>PNGQuantPreviewControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -199,12 +199,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="png-icon.ico" />
+    <Content Include="Resources\compress-icon.ico" />
+    <Content Include="Resources\compress-icon.png" />
+    <Content Include="Resources\png-icon.ico" />
+    <Content Include="Resources\png-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="app.manifest" />
     <None Include="PNGlutinator.Desktop.licenseheader" />
     <None Include="Properties\app.manifest" />
     <None Include="softcanonSK.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -212,7 +212,7 @@ namespace PNGlutinator
             else
             {
 
-                float r = (CompressFileSize / OriginalFileSize) * 100;
+                float r = 100L - (CompressFileSize *100L / OriginalFileSize) ;
                 return "-" + Math.Round(r, 2) + "%";
             }
         }
@@ -226,10 +226,14 @@ namespace PNGlutinator
         /// <param name="e"></param>
         private void MainView_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
-            {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.All;
+            else
+            {
+                String[] strGetFormats = e.Data.GetFormats();
+                e.Effect = DragDropEffects.None;
             }
+
         }
 
         private void MainView_DragDrop(object sender, DragEventArgs e)
@@ -566,6 +570,9 @@ namespace PNGlutinator
             System.Diagnostics.Process.Start("explorer.exe", "https://www.facebook.com/groups/SocialOffice");
         }
 
+        private void fileBatchDataGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
 
+        }
     }
 }
