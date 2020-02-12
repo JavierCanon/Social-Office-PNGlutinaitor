@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Javier Cañon (www.javiercanon.com) (www.javiercañon.com)
+﻿// GNU AFFERO GENERAL PUBLIC LICENSE version 3 Copyright (c) 2017 Javier Cañon | https://www.javiercanon.com 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -46,19 +46,28 @@ namespace PNGlutinator
         private int TotalFiles;
         private bool Running = false;
         private int PercentComplete;
-        private System.Windows.Forms.Timer ProgressTimer = new System.Windows.Forms.Timer();
+        // private System.Windows.Forms.Timer ProgressTimer = new System.Windows.Forms.Timer();
 
         private BatchOperations.BatchFileCompressor batch = new BatchOperations.BatchFileCompressor();
+
+        BackgroundWorker backgroundWorker1 = new BackgroundWorker();
 
         public MainView()
         {
             InitializeComponent();
 
+            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
+            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
+
 
             batch.FileProcessSuccess += new PNGlutinator.BatchOperations.FileProcessSuccessEventHandler(batch_FileProcessSuccess);
             batch.FileProcessFail += new PNGlutinator.BatchOperations.FileProcessFailEventHandler(batch_FileProcessFail);
             batch.Complete += new EventHandler(batch_Complete);
+
+            progressBar.Enabled = false;
+
         }
+
 
         private void MainView_Load(object sender, EventArgs e)
         {
@@ -88,7 +97,7 @@ namespace PNGlutinator
             addFilesButton.Enabled = false;
             removeItemButton.Enabled = false;
             cancelButton.Enabled = true;
-            progressBar.Visible = true;
+            progressBar.Enabled = true;
         }
 
         private void SetStoppedRunning()
@@ -99,7 +108,7 @@ namespace PNGlutinator
             addFilesButton.Enabled = true;
             setRemoveButtonEnabled();
             cancelButton.Enabled = false;
-            progressBar.Visible = false;
+            progressBar.Enabled = false;
             statusText.Text = String.Format("Processing complete. {0} files processed.", FilesProcessed);
         }
 
@@ -128,7 +137,37 @@ namespace PNGlutinator
 
             if (!Running)
             {
-                ProgressTimer.Stop();
+                //ProgressTimer.Stop();
+                SetStoppedRunning();
+            }
+        }
+
+        private void UpdateProgress()
+        {
+            PercentComplete = FilesProcessed * 100 / TotalFiles;
+
+            try
+            {
+                progressBar.Value = PercentComplete;
+            }
+            catch (System.InvalidOperationException)
+            {
+                Debug.Print("Can't update progress bar...");
+            }
+
+
+            try
+            {
+                updateStatusText(String.Format("{0}/{1} Files Processed ({2}%)", FilesProcessed, TotalFiles, PercentComplete));
+            }
+            catch (System.InvalidOperationException)
+            {
+                Debug.Print("Can't update status text...");
+            }
+
+            if (!Running)
+            {
+                //ProgressTimer.Stop();
                 SetStoppedRunning();
             }
         }
@@ -212,7 +251,7 @@ namespace PNGlutinator
             else
             {
 
-                float r = 100L - (CompressFileSize *100L / OriginalFileSize) ;
+                float r = 100L - (CompressFileSize * 100L / OriginalFileSize);
                 return "-" + Math.Round(r, 2) + "%";
             }
         }
@@ -376,6 +415,19 @@ namespace PNGlutinator
             compressionSettings.OutputType = (CompressionSettings.PNGType)pngTypeComboBox.SelectedIndex;
         }
 
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            progressBar.MarqueeAnimationSpeed = 0;
+            progressBar.Style = ProgressBarStyle.Blocks;
+            progressBar.Value = progressBar.Minimum;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            batch.Start();
+        }
+
         private void goButton_Click(object sender, EventArgs e)
         {
             string[] fileList = getFileList();
@@ -434,10 +486,13 @@ namespace PNGlutinator
             FilesProcessed = 0;
             PercentComplete = 0;
 
-            ProgressTimer.Tick += new EventHandler(updateProgress);
-            ProgressTimer.Start();
+            //ProgressTimer.Tick += new EventHandler(updateProgress);
+            //ProgressTimer.Start();
 
-            batch.Start();
+            //batch.Start();
+            progressBar.Style = ProgressBarStyle.Marquee;
+            progressBar.MarqueeAnimationSpeed = 100;
+            backgroundWorker1.RunWorkerAsync();
         }
 
         /// <summary>
@@ -459,6 +514,12 @@ namespace PNGlutinator
                 }
             }
         }
+
+        private void fileBatchDataGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+
+        }
+
 
         void batch_FileProcessFail(object sender, PNGlutinator.BatchOperations.FileProcessFailEventArgs e)
         {
@@ -484,7 +545,7 @@ namespace PNGlutinator
                 row.Cells["OptimisedSizeColumn"].Value = formatFileSize(e.Compressor.CompressedFile.Length);
                 // update actual file row to point to the new file, so further compressions act on the new file
                 row.Cells["RealFileColumn"].Value = e.NewFilePath;
-                
+
                 // update status
                 string compressorUsed = e.Compressor.GetType().Name;
                 row.Cells["StatusColumn"].Value = String.Format("Complete: {0} used", compressorUsed);
@@ -503,7 +564,7 @@ namespace PNGlutinator
 
             row.Cells["Percent"].Value = formatCompressPercent(dOrig, dOpti);
 
-
+            UpdateProgress();
 
         }
 
@@ -552,26 +613,30 @@ namespace PNGlutinator
 
         private void toolStripButtonAbout_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/JavierCanon/Social-Office-PNGlutinaitor");
+            System.Diagnostics.Process.Start("explorer.exe", "https://www.javiercanon.com/2019/02/software-comprimir-imagenes-png-maximo.html");
         }
 
         private void toolStripButtonHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/JavierCanon/Social-Office-PNGlutinaitor/wiki");
+            System.Diagnostics.Process.Start("explorer.exe", "https://www.facebook.com/groups/social.office.scrm/");
         }
 
         private void toolStripButtonCustomize_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "http://www.xn--javiercaon-09a.com/p/contacto.html");
+            System.Diagnostics.Process.Start("explorer.exe", "https://www.javiercanon.com/p/contacto.html");
         }
 
         private void toolStripButtonForum_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "https://www.facebook.com/groups/SocialOffice");
+            System.Diagnostics.Process.Start("explorer.exe", "https://www.facebook.com/groups/social.office.scrm/");
         }
 
-        private void fileBatchDataGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+
+        private void toolStripButtonReportBug_Click(object sender, EventArgs e)
         {
+            // When the url contains special characters, like =, then it need to be quoted:
+            string url = "https://bugs.softcanon.com/index.php?software=PNGlutinaitor";
+            System.Diagnostics.Process.Start("explorer.exe", $"\"{url}\"");
 
         }
     }

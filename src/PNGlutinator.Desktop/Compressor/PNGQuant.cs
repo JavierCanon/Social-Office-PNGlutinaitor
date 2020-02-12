@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Javier Cañon (www.javiercanon.com) (www.javiercañon.com)
+﻿// GNU AFFERO GENERAL PUBLIC LICENSE version 3 Copyright (c) 2017 Javier Cañon | https://www.javiercanon.com 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -26,6 +26,7 @@ using System.Diagnostics;
 
 namespace PNGlutinator.Compressor
 {
+
     class PNGQuant : PNGCompressor
     {
         /// <summary>
@@ -50,15 +51,18 @@ namespace PNGlutinator.Compressor
             Process cmdProcess = this.createProcess();
             string tmpFile = this.createTmpOriginalFile();
             string outputSuffix = "-fs8.png";
+            
             if (CompressionSettings.OrderedDither)
             {
                 cmdProcess.StartInfo.Arguments += " -ordered";
                 outputSuffix = "-or8.png";
             }
+
             cmdProcess.StartInfo.Arguments += " " + CompressionSettings.Colours;
             cmdProcess.StartInfo.Arguments += " \"" + tmpFile.Replace("\"", @"\") + "\"";
             cmdProcess.Start();
             cmdProcess.WaitForExit();
+
             // build path for compressed file
             string compressedFilePath = tmpFile + outputSuffix;
             // pick up the compressed file

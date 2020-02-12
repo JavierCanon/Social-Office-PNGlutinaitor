@@ -1,27 +1,39 @@
 ﻿# SOCIAL OFFICE PNGLUTINATOR #
 
-Social Office is a set free and open source tools for Social Media, Social Managers, Community Managers, by Javier Cañon (http://www.javiercanon.com) (http://www.javiercañon.com).
+Social Office is a set free and open source tools for Social Media, Social Managers, Community Managers, by [Javier Cañon](https://www.javiercanon.com).
 
 How does it work?
 Excellent question! When you process a PNG (Portable Network Graphics) file, similar colors in your image are combined. This technique is called “quantization”. By reducing the number of colors, 24-bit PNG files can be converted to much smaller 8-bit indexed color images. All unnecessary metadata is stripped too. The result: better PNG files with 100% support for transparency. 
 
-In the average image, the file size is reduced by 50% - 70%. 
-You can’t spot the difference either! Use the optimized image to save bandwidth and loading time and your website visitors will thank you, and you BOOST YOUR SEO (search engine rankings).
-
 ![pnglutinaitor](docs/img/pnglutinaitor-screenshoot-2.png)
+
+## What does it Do? ##
+
+* In the average image, the file size is reduced by 50% - 70%. 
+* You can’t spot the difference either! Use the optimized image to save bandwidth and loading time and your website visitors will thank you, and you BOOST YOUR SEO (search engine rankings).
+
+
+## Philosophy of Javier Cañon
+* KISS by design and programming. An acronym for "keep it simple, stupid" or "keep it stupid simple", is a design principle. The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore, simplicity should be a key goal in design, and unnecessary complexity should be avoided. Variations on the phrase include: "Keep it simple, silly", "keep it short and simple", "keep it simple and straightforward", "keep it small and simple", or "keep it stupid simple".
+
+* Select the best tools for the job, use tools that take less time to finish the job.
+* Productivity over complexity and avoid unnecessary complexity for elegant or beauty code.
+
+* Computers are machines, more powerful every year, give them hard work, concentrate on being productive.
+
 
 ## Requeriments? ##
 
 Windows 10.
-.Net Framework 4.7.2.
+.Net Framework 4.8.
 
 ## Community ##
 
-* Installers (https://github.com/JavierCanon/Social-Office-PNGlutinaitor/releases)
-* Website, videos, photos, docs, etc. (https://www.facebook.com/SocialOfficePNGlutinaitor/)
-* Group (https://www.facebook.com/groups/socialoffice/)
-* Wiki (https://github.com/JavierCanon/Social-Office-PNGlutinaitor/wiki)
-* Issue - Bug Traking (https://github.com/JavierCanon/Social-Office-PNGlutinaitor/issues)
+* [Installers](https://github.com/JavierCanon/Social-Office-PNGlutinaitor/releases)
+* [Website, videos, photos, docs, etc.](https://www.facebook.com/groups/social.office.scrm/)
+* [Group](https://www.facebook.com/groups/social.office.scrm/)
+* [Wiki](https://github.com/JavierCanon/Social-Office-PNGlutinaitor/wiki)
+* [Issue - Bug Traking](https://github.com/JavierCanon/Social-Office-PNGlutinaitor/issues)
 
 ## pngquant ##
 pngquant is a command-line utility and a library for lossy compression of PNG images.
@@ -66,9 +78,9 @@ Things I would like to add:
 ## Authors ##
 
 * pngquant is developed by Kornel Lesiński and contributors. It's based on code by Greg Roelofs and Jef Poskanzer.
-* Some code from NikkiDelRosso https://github.com/NikkiDelRosso/PNGoo
+* Some code from [NikkiDelRosso](https://github.com/NikkiDelRosso/PNGoo)
 * Jake Archibald 2009, for PNGoo
-* Social Office PNGlutinaitor by Javier Cañon (http://www.javiercanon.com) (http://www.javiercañon.com)
+* Social Office PNGlutinaitor by [Javier Cañon](https://www.javiercanon.com) 
 
 ## Bugs ##
 Please submit bug reports or feature requests on GitHub.

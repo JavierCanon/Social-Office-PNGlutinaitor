@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Javier Cañon (www.javiercanon.com) (www.javiercañon.com)
+﻿// GNU AFFERO GENERAL PUBLIC LICENSE version 3 Copyright (c) 2017 Javier Cañon | https://www.javiercanon.com 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to

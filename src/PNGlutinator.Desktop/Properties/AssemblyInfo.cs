@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Javier Cañon (www.javiercanon.com) (www.javiercañon.com)
+﻿// GNU AFFERO GENERAL PUBLIC LICENSE version 3 Copyright (c) 2017 Javier Cañon | https://www.javiercanon.com 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -27,7 +27,7 @@ using System.Resources;
 // associated with an assembly.
 [assembly: AssemblyTitle("Social Office PNGlutinator")]
 [assembly: AssemblyProduct("Social Office PNGlutinator")]
-[assembly: AssemblyCopyright("Copyright © Javier Cañon")]
+[assembly: AssemblyCopyright("Copyright © Javier Cañon | www.javiercanon.com")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -47,8 +47,8 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.*")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.2.0.*")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
 [assembly: NeutralResourcesLanguage("")]
 [assembly: AssemblyDescription("PNG Compressor")]
 [assembly: AssemblyCompany("Javier Cañon")]
